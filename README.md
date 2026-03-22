@@ -1,3 +1,5 @@
+<img width="110" height="71" alt="image" src="https://github.com/user-attachments/assets/e6e52a0e-4359-4fd1-a55e-31b3c5f0d397" />
+
 # Information & Reasoning Inconsistency Scanner
 An AI-powered tool designed to detect misinformation and logical inconsistencies in digital media through real-time verification.
 ## Setup
