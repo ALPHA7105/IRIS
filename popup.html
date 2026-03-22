@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    :root {
+      --unesco-blue: #1a73e8;
+      --error-red: #d93025;
+      --bg-gray: #f8f9fa;
+    }
+    body { 
+      width: 350px; 
+      font-family: 'Segoe UI', system-ui, sans-serif; 
+      margin: 0; 
+      background: var(--bg-gray); 
+    }
+    .container { padding: 20px; }
+    
+    /* Header */
+    .header {
+      background: var(--unesco-blue);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .header-title-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 2px;
+    }
+    h2 { margin: 0; font-size: 18px; font-weight: 600; }
+    .status { font-size: 10px; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* Setup Page Styles */
+    #setupPage { display: none; text-align: center; }
+    
+    /* Main Page Styles */
+    #mainPage { display: none; }
+    
+    /* Elements */
+    input, button { 
+      width: 100%; 
+      padding: 12px; 
+      margin-bottom: 12px; 
+      border-radius: 8px; 
+      border: 1px solid #dadce0; 
+      box-sizing: border-box; 
+      font-size: 14px;
+    }
+    
+    #auditBtn { 
+      background: var(--unesco-blue); 
+      color: white; 
+      border: none; 
+      cursor: pointer; 
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    #auditBtn:hover { background: #1557b0; }
+    #auditBtn:disabled { background: #bdc1c6; }
+
+    #results { 
+      max-height: 350px; 
+      overflow-y: auto; 
+      background: white; 
+      border-radius: 8px; 
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    }
+    
+    .report-item {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+    }
+    .report-item:hover { background: #f1f8ff; }
+    
+    .settings-link {
+      font-size: 11px;
+      color: #666;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: underline;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="setupPage" class="container">
+    <div style="margin: 20px 0; display: flex; justify-content: center;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 100 100" fill="none">
+        <circle cx="57" cy="51" r="18" stroke="#1a73e8" stroke-width="5" fill="none"/>
+        <path d="m69 68 9 13" stroke="#1a73e8" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="68.5" cy="67" r="3" fill="#00d4ff"/>
+        <text x="7" y="60" font-family="'Segoe UI', sans-serif" font-size="28" font-weight="700" fill="#1a73e8">I</text>
+        <text x="16" y="60" font-family="'Segoe UI', sans-serif" font-size="28" font-weight="700" fill="#1a73e8">R</text>
+        <text x="51" y="62" font-family="'Segoe UI', sans-serif" font-size="31" font-weight="800" fill="#0096ff">I</text>
+        <text x="79" y="60" font-family="'Segoe UI', sans-serif" font-size="28" font-weight="700" fill="#1a73e8">S</text>
+        <circle cx="56.4" cy="43.3" r="3" fill="#00d4ff"/>
+        <circle cx="56.4" cy="58.8" r="3" fill="#00d4ff"/>
+      </svg>
+    </div>
+    <h3 style="margin-top: 0;">Initialize the Information & Reasoning Inconsistency Scanner (IRIS)</h3>
+    <p style="font-size: 12px; color: #555; line-height: 1.5;">To begin the scan, please enter your Gemini API Key. This will be stored locally on your device.</p>
+    <input type="password" id="apiKey" placeholder="Paste Gemini API Key">
+    <button id="saveKey" style="background: #1a73e8; color: white; border: none;">Activate System</button>
+    <a href="https://aistudio.google.com/app/apikey" target="_blank" style="font-size: 11px; color: var(--unesco-blue);">Get a free key from Google AI Studio</a>
+  </div>
+
+  <div id="mainPage">
+    <div class="header">
+      <div class="header-title-container">
+        <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="45" cy="45" r="30" stroke="#FFF" stroke-width="8" fill="#1a73e8"/>
+          <path d="M 68 68 L 85 85" stroke="#FFF" stroke-width="10" stroke-linecap="round"/>
+          <path d="M44.5 31 L44.5 58" stroke="#FFF" stroke-width="8" stroke-linecap="square" stroke-linejoin="round"/>
+        </svg>
+        <h2 style="text-align: center">Information & Reasoning Inconsistency Scanner (IRIS)</h2>
+      </div>
+      <div class="status">UNESCO MIL Misinformation and Fallacy Scanner</div>
+    </div>
+    
+    <div class="container">
+      <button id="auditBtn">Run AI Scanner</button>
+      <button id="clearBtn" style="background:#fff; color:#5f6368; border:1px solid #dadce0; margin-top: -5px;">
+        <span>&#10227;</span> Clear Analysis
+      </button>
+      <div id="results"></div>
+      <div class="settings-link" id="reconfigure">Update API Key</div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
